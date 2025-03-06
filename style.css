@@ -1,0 +1,40 @@
+/**
+ * Theme Name: storefront-child
+ * Template: storefront
+ */
+
+.weather-table--head {
+  position: relative;
+}
+
+.weather-table--headers.loading {
+  opacity: 0.5;
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 25px;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 3px solid #8787874d;
+  border-top-color: #5cd6ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: none;
+}
+
+.loader.loading {
+  display: block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
