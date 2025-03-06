@@ -9,8 +9,10 @@ Template Name: Info page
 <form method="post" id="search-city-form">
     <input type="text" name="city" placeholder="Enter the city" required>
     <input type="hidden" name="action" value="searchCity">
-
+    
     <input id="submit" type="submit" value="Search city">
+
+    <input id="all-cities" type="button" value="All cities">
 </form>
 
 <?php

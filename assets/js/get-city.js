@@ -5,46 +5,60 @@ const tBody = document.getElementById("weather-table-body");
 const loader = document.querySelector(".loader");
 
 const submitBtn = document.getElementById("submit");
+const allCitiesBtn = document.getElementById("all-cities");
 
 if (form) {
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const formData = new FormData(form);
 
-    loader.classList.add("loading");
-    tHeaders.classList.add("loading");
-
-    submitBtn.setAttribute("disabled", "disabled");
-
-    fetch(ajaxurl, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        const { success, data } = res.data;
-
-        if (success) {
-          resultContent(data);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        loader.classList.remove("loading");
-        tHeaders.classList.remove("loading");
-
-        submitBtn.removeAttribute("disabled");
-      });
+    dataRequest(formData);
   });
+
+  allCitiesBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+
+    dataRequest(formData);
+  });
+}
+
+function dataRequest(formData) {
+  loader.classList.add("loading");
+  tHeaders.classList.add("loading");
+
+  submitBtn.setAttribute("disabled", "disabled");
+
+  fetch(ajaxurl, {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      const { success, data } = res.data;
+
+      if (success) {
+        resultContent(data);
+      }
+
+      form.reset();
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+      loader.classList.remove("loading");
+      tHeaders.classList.remove("loading");
+
+      submitBtn.removeAttribute("disabled");
+    });
 }
 
 function resultContent(data) {
   let result = "";
 
-  console.log(data);
   if (data.length) {
     data.forEach((item) => {
       result += `<tr>
