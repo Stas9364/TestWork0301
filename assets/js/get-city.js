@@ -13,7 +13,7 @@ if (form) {
 
     const formData = new FormData(form);
 
-    dataRequest(formData);
+    dataRequest(formData, 'submit');
   });
 
   allCitiesBtn.addEventListener("click", function (event) {
@@ -21,15 +21,16 @@ if (form) {
 
     const formData = new FormData(form);
 
-    dataRequest(formData);
+    dataRequest(formData, 'click');
   });
 }
 
-function dataRequest(formData) {
+function dataRequest(formData, btnType) {
   loader.classList.add("loading");
   tHeaders.classList.add("loading");
 
   submitBtn.setAttribute("disabled", "disabled");
+  allCitiesBtn.setAttribute("disabled", "disabled");
 
   fetch(ajaxurl, {
     method: "POST",
@@ -53,6 +54,11 @@ function dataRequest(formData) {
       tHeaders.classList.remove("loading");
 
       submitBtn.removeAttribute("disabled");
+console.log(btnType);
+
+      if (btnType === "submit") {
+        allCitiesBtn.removeAttribute("disabled");
+      }
     });
 }
 

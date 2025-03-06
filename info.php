@@ -12,7 +12,7 @@ Template Name: Info page
     
     <input id="submit" type="submit" value="Search city">
 
-    <input id="all-cities" type="button" value="All cities">
+    <input id="all-cities" type="button" value="All cities" disabled>
 </form>
 
 <?php
